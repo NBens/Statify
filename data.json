@@ -1,0 +1,10 @@
+{
+  "author": "NBens",
+  
+  
+  "posts-per-page": 10,
+  "static-files": [
+  "css": "./static/css",
+  "js": "./static/js"
+  ]
+}

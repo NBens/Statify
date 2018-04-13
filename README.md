@@ -1,2 +1,2 @@
 # simplesite
-My Static Site Generator, Powered by Python 3 &amp; Jninja2
+Simple lightweight static site generator, Powered by Python 3 &amp; Jninja2

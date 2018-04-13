@@ -5,6 +5,7 @@ Simple lightweight static site generator, Powered by Python 3 &amp; Jninja2
 * Serve Online Editor (Wysiwyg to Markdown)
 * Multiple Themes & Templates
 * Github Pages support
+* Meta from JSON file
 
 # Dependencies:
 * Jinja2

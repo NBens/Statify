@@ -3,8 +3,8 @@
   
   
   "posts-per-page": 10,
-  "static-files": [
-  "css": "./static/css",
-  "js": "./static/js"
-  ]
+  "static-files": {
+  "css": ["static/css/style.css"],
+  "js": ["static/js/jscode.js"]
+  }
 }

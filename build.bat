@@ -1,3 +1,6 @@
+git add .
+git commit -m "Static Modifications"
+git push
 statify.py
 xcopy /s output ..\NBens.github.io
 cd ../NBens.github.io

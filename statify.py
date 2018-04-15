@@ -18,7 +18,7 @@ def loadTemplate(page):
 
 def extractMeta(text):
     found = re.findall('<!--(.*?)-->', text)
-    splitted = [[j.strip(" ") for j in t.split(":")] for t in found]
+    splitted = [[j.strip(" ") for j in t.split(":", 1)] for t in found]
     return splitted
 
 

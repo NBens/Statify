@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ blogName }} - {{ title }}</title>
+    <title>{{ config.blogName }} - {{ blog.title }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ dependencies }}css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ dependencies }}css/clean-blog.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
   </head>
 
@@ -29,7 +29,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.html">{{ blogName }}</a>
+        <a class="navbar-brand" href="index.html">{{ config.blogName }}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -37,9 +37,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="{{dependencies}}index.html">Home</a>
             </li>
-		    [NAV-BAR]
+			{% for item in blogs if item.type == 'page' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{dependencies}}{{ item.href }}">{{ item.title }}</a>
+            </li>			
+			{% endfor %}
           </ul>
         </div>
       </div>
@@ -52,11 +56,11 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
-              <h1>{{ title }}</h1>
-              <h2 class="subheading">{{ subtitle }}</h2>
+              <h1>{{ blog.title }}</h1>
+              <h2 class="subheading">{{ blog.subtitle }}</h2>
               <span class="meta">Posted by
-                <a href="#">{{ author }}</a>
-                on {{ date }}</span>
+                <a href="#">{{ blog.author }}</a>
+                on {{ blog.date }}</span>
             </div>
           </div>
         </div>
@@ -68,7 +72,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-				{{ content }}
+				{{ blog.content }}
           </div>
         </div>
       </div>
@@ -83,7 +87,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <ul class="list-inline text-center">
               <li class="list-inline-item">
-                <a href="#">
+                <a href="{{ config.twitter }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -91,7 +95,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="{{facebook}}">
+                <a href="{{ config.facebook }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -99,7 +103,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="{{github}}">
+                <a href="{{ config.github }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -107,7 +111,7 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">{{ footer }}</p>
+            <p class="copyright text-muted">{{ config.footer }}</p>
           </div>
         </div>
       </div>
@@ -120,7 +124,7 @@
     <!-- Custom scripts for this template -->
     <script src="{{ dependencies }}js/clean-blog.min.js"></script>
 	
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 	
 	<script>hljs.initHighlightingOnLoad();</script>
 

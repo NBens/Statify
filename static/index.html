@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ blogName }}</title>
+    <title>{{ config.blogName }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ dependencies }}css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.html">{{ blogName }}</a>
+        <a class="navbar-brand" href="index.html">{{ config.blogName }}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -36,9 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="{{dependencies}}index.html">Home</a>
             </li>
-			[NAV-BAR]
+			{% for item in blogs if item.type == 'page' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ item.href }}">{{ item.title }}</a>
+            </li>			
+			{% endfor %}
           </ul>
         </div>
       </div>
@@ -51,8 +55,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+              <h1>{{ config.blogName }}</h1>
+              <span class="subheading">Writing about everything, from JS to life.</span>
             </div>
           </div>
         </div>
@@ -63,63 +67,27 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+		  {% for item in blogs if item.type == 'blog' %}
           <div class="post-preview">
-            <a href="post.html">
+            <a href="{{ item.href }}">
               <h2 class="post-title">
-                Man must explore, and this is exploration at its greatest
+                {{ item.title }}
               </h2>
               <h3 class="post-subtitle">
-                Problems look mighty small from 150 miles up
+                {{ item.subtitle }}
               </h3>
             </a>
             <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on September 24, 2018</p>
+              <a href="#">{{ item.author }}</a>
+              on {{ item.date }}</p>
           </div>
           <hr>
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-              </h2>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on September 18, 2018</p>
-          </div>
-          <hr>
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Science has not yet mastered prophecy
-              </h2>
-              <h3 class="post-subtitle">
-                We predict too much for the next year and yet far too little for the next ten.
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on August 24, 2018</p>
-          </div>
-          <hr>
-          <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Failure is not an option
-              </h2>
-              <h3 class="post-subtitle">
-                Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on July 8, 2018</p>
-          </div>
-          <hr>
-          <!-- Pager -->
+		  {% endfor %}
+          <!-- Pager 
           <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
           </div>
+		  -->
         </div>
       </div>
     </div>
@@ -133,7 +101,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <ul class="list-inline text-center">
               <li class="list-inline-item">
-                <a href="{{twitter}}">
+                <a href="{{ config.twitter }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -141,7 +109,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="{{facebook}}">
+                <a href="{{ config.facebook }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -149,7 +117,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="{{github}}">
+                <a href="{{ config.github }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -157,7 +125,7 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">{{ footer }}</p>
+            <p class="copyright text-muted">{{ config.footer }}</p>
           </div>
         </div>
       </div>

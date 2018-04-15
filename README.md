@@ -7,6 +7,7 @@ Simple lightweight static site generator, Powered by Python 3 &amp; Jninja2
 * Multiple Themes & Templates
 * Auto build for Linux
 * Add support to other markup languages
+* Tags & Categories
 
 # Dependencies:
 * markdown2
